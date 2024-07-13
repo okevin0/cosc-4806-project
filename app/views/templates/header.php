@@ -13,7 +13,7 @@ if (!isset($_SESSION['auth'])) {
         <meta name="viewport" content="width=device-width">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.js"></script>
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9db6c8;">
