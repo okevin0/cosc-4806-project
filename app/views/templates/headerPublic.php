@@ -18,8 +18,7 @@ if (isset($_SESSION['auth']) == 1) {
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9db6c8;">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">COSC4806</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-light me-5 mb-2 mb-lg-0 btn btn-primary " href="/login">Login In</a>
       </div>
     </nav>
+    
