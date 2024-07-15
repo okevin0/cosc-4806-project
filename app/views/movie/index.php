@@ -25,7 +25,7 @@
           <form action="/movie/search" method="post">
               <div class="row g-1">
                 <div class="col-sm-7">
-                  <input type="search" class="form-control p-3 border bg-light" placeholder="Type Movie Name" name="search">
+                  <input type="text" class="form-control p-3 border bg-light" placeholder="Type Movie Name" name="movie_title">
                 </div>
                 <div class="col-sm">
                   <input type="number" class="form-control p-3 border bg-light" placeholder="Year" name="year">
