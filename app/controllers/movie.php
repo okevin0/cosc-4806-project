@@ -14,24 +14,22 @@ class Movie extends Controller {
       $year = $_REQUEST['year'];
 
       if($movie_tilte == "") {
-         $_SESSION['search_empty'] = 1;
+        $_SESSION['search_empty'] = 1;
+        $this->view('movie/result/index', ['movie' => '']);
+        die;
       }
+
       // connect to OMDB
       $search_movie = $this->model('Api');
       $movie_obj = $search_movie->search_movie($movie_tilte, $year);
 
-      if($movie_tilte == "") {
-         $_SESSION['search_empty'] = 1;
-      }
-
-      if($movie_obj['Response']) {
+      if($movie_obj['Response'] == 'False') {
         $_SESSION['not_found'] = 1;
+        $this->view('movie/result/index', ['movie' => $movie_tilte]);
+        die;
       }
 
-      print_r($movie_obj);
-
-     
-      $this->view('movie/search', ['movie' => $movie_obj]);
+      $this->view('movie/result/index', ['movie' => $movie_obj]);
     }
 
 }

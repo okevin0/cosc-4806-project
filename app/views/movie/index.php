@@ -8,20 +8,8 @@
             </div>
         </div>
     </div>
-
     <div>
         <div>
-          <?php
-            // only print when lock user
-            if(isset($_SESSION['lock']) && $_SESSION['lock'] == 1 ) {
-              echo "<div class='alert alert-danger'> You accound is locked, please try after 60 seconds.</div>";
-            }
-
-            // only print when wrong username/password
-            if(isset($_SESSION['failedAuth']) && $_SESSION['failedAuth'] > 0 ) {
-              echo "<div class='alert alert-danger'>Your username or password is not right, please try again.</div>";
-            }
-          ?>
           <form action="/movie/search" method="post">
               <div class="row g-1">
                 <div class="col-sm-7">
