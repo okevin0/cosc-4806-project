@@ -39,6 +39,9 @@ if (!isset($_SESSION['auth'])) {
             <li><a class="dropdown-item" href="/reminders/create">Create Reminder</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/movie">Movie Search</a>
+        </li>
         <?php if ($_SESSION['admin'] == 1) { ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,4 +1,11 @@
-<?php require_once 'app/views/templates/headerPublic.php'?>
+<?php 
+if (!isset($_SESSION['auth'])) {
+  // print_r("You are not logged in");
+  require_once 'app/views/templates/headerPublic.php';
+} else {
+  require_once 'app/views/templates/header.php';
+}
+?>
   <div class="modal-dialog-centered" style="min-height: 70vh !important;">
   <div class="container border bg-light p-5 bg-dark bg-opacity-25">
     <div class="page-header" id="banner">

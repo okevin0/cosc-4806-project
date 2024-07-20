@@ -3,14 +3,20 @@
 class Movie extends Controller {
 
     public function index() {
-    
       $this->view('movie/index');
       die;
     }
 
     // Allow someone (who doesn’t need to be logged in but it is okay if they are) to search for a movie 
     public function search(){
-      $movie_tilte = $_REQUEST['movie_title'];
+
+      if($_REQUEST['movie'] != ''){
+        $_SESSION['search_empty'] = 0;
+        $movie_tilte = $_REQUEST['movie'];
+      } else {
+        $movie_tilte = $_REQUEST['movie_title'];
+      }
+      
       $year = $_REQUEST['year'];
 
       if($movie_tilte == "") {
@@ -30,6 +36,18 @@ class Movie extends Controller {
       }
 
       $this->view('movie/result/index', ['movie' => $movie_obj]);
+    }
+
+    // load movie rating into DB
+    public function rating(){
+
+      $movie = $_REQUEST['movie'];
+      $rating = $_REQUEST['rating'];
+      // echo $movie." ".$rating."user=".$_SESSION['user_id'];
+
+      $this->model('Rating')->add_rating($_SESSION['user_id'], $movie, $rating);
+
+      $this->search();
     }
 
 }
