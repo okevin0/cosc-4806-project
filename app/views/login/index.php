@@ -1,4 +1,7 @@
-<?php require_once 'app/views/templates/headerPublic.php'?>
+<?php 
+	require_once 'app/views/templates/headerPublic.php';
+	session_destroy();
+?>
 	<div class="align-items-center d-flex justify-content-center" style="min-height: 70vh !important;">
 	<div>
     <div class="page-header" id="banner">

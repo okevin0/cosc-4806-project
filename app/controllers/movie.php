@@ -35,12 +35,20 @@ class Movie extends Controller {
         die;
       }
 
-      $this->view('movie/result/index', ['movie' => $movie_obj]);
+      // get the movie rates
+      $list_of_rating = $this->view_all_ratings($movie_tilte);
+
+      $this->view('movie/result/index', ['movie' => $movie_obj, 'rating' => $list_of_rating]);
     }
 
     // load movie rating into DB
     public function rating(){
-
+      if (!isset($_SESSION['auth'])) {
+        $_SESSION['unauth_rating'] = 1;
+        $this->search();
+        die;
+      }
+      
       $movie = $_REQUEST['movie'];
       $rating = $_REQUEST['rating'];
       // echo $movie." ".$rating."user=".$_SESSION['user_id'];
@@ -48,6 +56,13 @@ class Movie extends Controller {
       $this->model('Rating')->add_rating($_SESSION['user_id'], $movie, $rating);
 
       $this->search();
+    }
+
+    public function view_all_ratings($movie) {
+      $movie_rating = $this->model('Rating');
+      $list_of_rating = $movie_rating->get_all_ratings_by_movie($movie);
+
+      return $list_of_rating;
     }
 
 }

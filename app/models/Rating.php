@@ -8,7 +8,9 @@ class Rating {
 
     public function get_all_ratings_by_movie($movie) {
       $db = db_connect();
-      $statement = $db->prepare("select * from rates where movie = ?;");
+      $statement = $db->prepare("select username,rating,create_date from rates r 
+                                 join users u on u.id = r.user_id 
+                                 where movie = ?;");
       $statement->execute([$movie]);
       $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $rows;
@@ -16,9 +18,10 @@ class Rating {
 
     public function add_rating($movie, $user_id, $rating) {
       $db = db_connect();
-      $statement = $db->prepare("insert into rates (user_id, movie, rating) values (?, ?, ?);");
+      $statement = $db->prepare("insert into rates (user_id, movie, rating) values (?, ?, ?) 
+                                  on duplicate key update rating = values(rating);");
       $statement->execute([$movie, $user_id, $rating]);
-      $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $rows;
     }
 
