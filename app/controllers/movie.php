@@ -13,9 +13,11 @@ class Movie extends Controller {
     // Allow someone (who doesn’t need to be logged in but it is okay if they are) to search for a movie 
     public function search(){
       global $movie_review;
+      unset($_SESSION['search_empty']);
+      unset($_SESSION['not_found']);
       
       if($_REQUEST['movie'] != ''){
-        $_SESSION['search_empty'] = 0;
+
         $movie_tilte = $_REQUEST['movie'];
       } else {
         $movie_tilte = $_REQUEST['movie_title'];
