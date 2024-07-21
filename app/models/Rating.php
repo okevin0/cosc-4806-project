@@ -10,7 +10,8 @@ class Rating {
       $db = db_connect();
       $statement = $db->prepare("select username,rating,create_date from rates r 
                                  join users u on u.id = r.user_id 
-                                 where movie = ?;");
+                                 where movie = ?
+                                 order by create_date desc;");
       $statement->execute([$movie]);
       $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $rows;

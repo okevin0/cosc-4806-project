@@ -45,6 +45,7 @@ class Movie extends Controller {
 
     // load movie rating into DB
     public function rating(){
+      // check if user is logged in
       if (!isset($_SESSION['auth'])) {
         $_SESSION['unauth_rating'] = 1;
         $this->search();
@@ -53,8 +54,8 @@ class Movie extends Controller {
       
       $movie = $_REQUEST['movie'];
       $rating = $_REQUEST['rating'];
-      // echo $movie." ".$rating."user=".$_SESSION['user_id'];
 
+      // add movie rating to DB
       $this->model('Rating')->add_rating($_SESSION['user_id'], $movie, $rating);
 
       $this->search();

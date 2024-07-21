@@ -94,10 +94,14 @@
           <?php
               foreach($data["rating"] as $rating){
                 echo "<tr><td><i>".$rating["username"]."</i></td><td>";
-                for($i = 1; $i <= $rating["rating"]; $i++){
+                for($i = 1; $i <= 5; $i++){
+                  if( $i <= $rating["rating"] ) {
           ?>
-                <span class="btn btn-outline-warning">★</span>
-          <?php
+                    <span class="btn btn-warning">★</span>
+            <?php } else {  ?>
+                    <span class="btn btn-outline-warning">★</span>
+          <?php   }   
+                  
                 }
                echo "</td><td>".$rating["create_date"]."</td> </tr>";
               }

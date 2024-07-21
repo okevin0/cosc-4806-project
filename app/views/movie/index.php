@@ -2,8 +2,10 @@
 if (!isset($_SESSION['auth'])) {
   // print_r("You are not logged in");
   require_once 'app/views/templates/headerPublic.php';
-} else {
-  require_once 'app/views/templates/header.php';
+} 
+else {
+  // require_once 'app/views/templates/header.php';
+  header('Location: /home');
 }
 ?>
   <div class="modal-dialog-centered" style="min-height: 70vh !important;">
@@ -32,4 +34,8 @@ if (!isset($_SESSION['auth'])) {
   </div>
 </div>
 
-<?php require_once 'app/views/templates/footer.php' ?>
+<?php 
+  if (!isset($_SESSION['auth'])) {
+    require_once 'app/views/templates/footer.php';
+  }
+?>
