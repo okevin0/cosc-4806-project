@@ -16,6 +16,7 @@ class Rating {
       return $rows;
     }
 
+    // add movie rating to DB. if user already add rating, then update rating
     public function add_rating($movie, $user_id, $rating) {
       $db = db_connect();
       $statement = $db->prepare("insert into rates (user_id, movie, rating) values (?, ?, ?) 

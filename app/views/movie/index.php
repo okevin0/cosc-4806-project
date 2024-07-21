@@ -19,11 +19,8 @@ if (!isset($_SESSION['auth'])) {
         <div>
           <form action="/movie/search" method="post">
               <div class="row g-1">
-                <div class="col-sm-7">
+                <div class="col-sm-10">
                   <input type="text" class="form-control p-3 border bg-light" placeholder="Type Movie Name" name="movie_title">
-                </div>
-                <div class="col-sm">
-                  <input type="number" class="form-control p-3 border bg-light" placeholder="Year" name="year">
                 </div>
                 <div class="col-sm-auto">
                   <button class="p-3 btn btn-primary" type="submit" >Search</button>

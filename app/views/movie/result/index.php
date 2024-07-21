@@ -7,7 +7,7 @@
   }
 
 ?>
-<div class="modal-dialog-centered">
+<div class="modal-dialog-centered p-3">
   <div class="container border bg-light p-3 bg-dark bg-opacity-25">
     <div class="page-header" id="banner">
         <div class="row">
@@ -20,11 +20,8 @@
         <div>
           <form action="/movie/search" method="post">
               <div class="row g-1">
-                <div class="col-sm-7">
+                <div class="col-sm-10">
                   <input type="text" class="form-control p-3 border bg-light" placeholder="Type Movie Name" name="movie_title">
-                </div>
-                <div class="col-sm">
-                  <input type="number" class="form-control p-3 border bg-light" placeholder="Year" name="year">
                 </div>
                 <div class="col-sm-auto">
                   <button class="p-3 btn btn-primary" type="submit" >Search</button>
@@ -34,7 +31,7 @@
       </div>
       <?php
 
-        if((isset($_SESSION['search_empty']) && $_SESSION['search_empty'] == 1)) {
+        if(isset($_SESSION['search_empty']) && $_SESSION['search_empty'] == 1) {
           echo "<br /><div class='alert alert-danger'> Please enter the movie title, it's can not be empty.</div>";
         }
         else if(isset($_SESSION['not_found']) && $_SESSION['not_found'] == 1 ) {
@@ -46,7 +43,7 @@
       ?>
     </div>
     <br />
-    <div class="card mb-3 p-2" style="min-width: 540px;">
+    <div class="card mb-3 p-2">
       <div class="row g-0">
         <div class="col-md-4 align-content-center text-center">
           <img src=<?php echo $data["movie"]["Poster"]; ?> class="img-fluid rounded-start" alt=<?php echo $data["movie"]["Title"]; ?> > 
@@ -106,6 +103,22 @@
               }
           ?>
           </table>
+        </div>
+        <div>
+          <div>
+          <?php 
+              if(isset($_SESSION['auth']) && $data["review"] != "") {
+                echo "<h3>AI Review: <h3>";
+                echo $data["review"]."<br>";
+              }
+          ?>
+          </div>
+          <?php if(isset($_SESSION['auth'])){ ?>
+            <br>
+            <a href="/movie/review/?movie=<?php echo $data["movie"]["Title"]; ?>">
+              <button class="btn btn-primary">Get a Review</button>
+            </a>
+          <?php } ?>
         </div>
       </div>
     </div>
